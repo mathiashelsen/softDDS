@@ -1,0 +1,14 @@
+module sin_lut( clk, addr, data );
+input                           clk;
+input   [INPUT_WIDTH-1 : 0]     addr;
+output reg     [OUTPUT_WIDTH-1 : 0]    data;
+reg     [OUTPUT_WIDTH-1 : 0]    lut [2**INPUT_WIDTH-1 : 0];
+
+initial begin
+end
+
+always @(posedge clk) begin
+    data <= lut[addr];
+end
+
+endmodule
