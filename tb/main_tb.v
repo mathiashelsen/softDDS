@@ -25,7 +25,7 @@ module test;
     end
     
     wire [7:0] value;
-    sin_lut lut1 (clk, addr, value );
+    sin_lut_8x8 lut1 (clk, addr, value );
 
 
 endmodule // test

@@ -10,11 +10,12 @@ else:
     inputWidth = 2**int(sys.argv[1]);
     outputWidth = 2**int(sys.argv[2]);
 
-    fileOut = open('sin_lut.v', 'w')
+    fileName = 'sin_lut_' + sys.argv[1] + 'x' + sys.argv[2] + '.v'
+    fileOut = open(fileName, 'w')
     fileIn = open('sin_lut.template', 'r')
 
-    stringIn = fileIn.readline()
-    fileOut.write(stringIn)
+    stringOut = 'module sin_lut_' + sys.argv[1] + 'x' + sys.argv[2] + '( clk, addr, data );\n\n' 
+    fileOut.write(stringOut)
 
     stringOut = '\nparameter INPUT_WIDTH\t= ' + sys.argv[1] + ';\n';
     fileOut.write(stringOut)
@@ -30,7 +31,7 @@ else:
 
 
     for i in range(inputWidth):
-        floatValue  = math.sin(math.pi*float(i)/float(inputWidth)/2.0) 
+        floatValue  = math.sin(math.pi*float(i)/float(inputWidth-1)/2.0) 
         intValue    = round((outputWidth-1) * floatValue);
         stringOut = '\tlut[' + str(i) + ']\t\t=\t' + sys.argv[2] + '\'b' + bin(intValue)[2:] + ';\n';
         fileOut.write(stringOut)
